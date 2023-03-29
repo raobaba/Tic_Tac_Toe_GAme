@@ -6,7 +6,7 @@ const Board: React.FC = () => {
     const activePlayer = Math.round(Math.random()+1) === 1 ? "X":"0";
     const [currentPlayer,setCurrentPlayer] = useState<"X"|"0">(activePlayer);
     const [square,setSquare] = useState<Player[]>(Array(9).fill(null));
-    const [winner,setWinner] = useState()
+    const [winner,setWinner] = useState<string|null>(null)
     const setSquareValue=(ind:number)=>{
          const data = square.map((value,i)=>{
            if(ind===i){
@@ -27,15 +27,21 @@ const Board: React.FC = () => {
             [2,4,6],
             [0,4,8]
            ];
-           possibleWinnerCombinations.map(combo=>{
+          return possibleWinnerCombinations.map(combo=>{
             const [a,b,c] = combo;
               if(square[a]&&square[a]===square[b]&&square[a]===square[c]){
-                
+                return square[a];
               }
-           })
+              return null;
+           }).filter(data=>data)[0];
          }
          useEffect(()=>{
-            CalCulateWinner(square)
+           const winnerPlayer = CalCulateWinner(square)
+           if(winnerPlayer){
+
+           }else{
+            
+           }
          })
     }
     return (
