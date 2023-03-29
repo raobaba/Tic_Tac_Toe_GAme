@@ -1,15 +1,41 @@
 import { Grid } from "semantic-ui-react";
 import Square from './../Components/Square';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+type Player ="X"|"0"|null
 const Board: React.FC = () => {
     const activePlayer = Math.round(Math.random()+1) === 1 ? "X":"0";
     const [currentPlayer,setCurrentPlayer] = useState<"X"|"0">(activePlayer);
-    const [square,setSquare] = useState(Array(9).fill(null))
+    const [square,setSquare] = useState<Player[]>(Array(9).fill(null));
+    const [winner,setWinner] = useState()
     const setSquareValue=(ind:number)=>{
-         square.map((value,i)=>{
+         const data = square.map((value,i)=>{
            if(ind===i){
-            return 
+            return currentPlayer;
            }
+           return value;
+         })
+         setSquare(data);
+         setCurrentPlayer(currentPlayer==="X" ? "0":"X")
+         const CalCulateWinner = (square:Player[])=>{
+           const possibleWinnerCombinations=[
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [2,4,6],
+            [0,4,8]
+           ];
+           possibleWinnerCombinations.map(combo=>{
+            const [a,b,c] = combo;
+              if(square[a]&&square[a]===square[b]&&square[a]===square[c]){
+                
+              }
+           })
+         }
+         useEffect(()=>{
+            CalCulateWinner(square)
          })
     }
     return (
@@ -19,7 +45,9 @@ const Board: React.FC = () => {
                 {
                     Array(9).fill(null).map((val, ind) => (
                         <Grid.Column className="board-column">
-                            <Square onClick={()=>setSquareValue(ind)} />
+                            <Square
+                             onClick={()=>setSquareValue(ind)} 
+                             value={square[ind]} />
                         </Grid.Column>
                     ))
                 }
