@@ -1,10 +1,10 @@
 
 
-const Square:React.FC = ()=>{
+const Square: React.FC = () => {
     return (
-        <div>
-              Hello from Square Components
-        </div>
+        <button className="board-button">
+           X
+        </button>
     )
 }
 export default Square;

@@ -8,3 +8,7 @@
   border: 1px solid #ccc;
   padding: 0% !important;
 }
+.board-button{
+  height: 100%;
+  width: 100%;
+}
