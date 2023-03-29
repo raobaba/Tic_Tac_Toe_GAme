@@ -1,13 +1,16 @@
 
 interface isSquareProps {
     onClick: () => void,
-    value: "X" | "0" | null
+    value: "X" | "0" | null,
+    winner:string|null
 }
-const Square: React.FC<isSquareProps> = ({ onClick, value }) => {
+const Square: React.FC<isSquareProps> = ({ onClick, value,winner }) => {
     if (!value) {
         return (
             <button className="board-button"
-                onClick={onClick}>
+                onClick={onClick}
+                disabled={Boolean(winner)} 
+                >
                 {value}
             </button>
         )
