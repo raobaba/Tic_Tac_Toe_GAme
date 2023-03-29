@@ -11,4 +11,6 @@
 .board-button{
   height: 100%;
   width: 100%;
+  font-size: 80px;
+  color: #FFF;
 }

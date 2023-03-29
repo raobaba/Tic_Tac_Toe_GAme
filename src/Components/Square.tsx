@@ -1,9 +1,11 @@
 
-
-const Square: React.FC = () => {
+interface isSquareProps {
+    onClick:()=> void
+}
+const Square: React.FC<isSquareProps> = ({onClick}) => {
     return (
-        <button className="board-button">
-           X
+        <button className="board-button"
+           onClick={onClick}>
         </button>
     )
 }
