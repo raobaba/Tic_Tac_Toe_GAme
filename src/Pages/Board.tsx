@@ -5,7 +5,11 @@ const Board:React.FC = () =>{
         <div>
           <p>Hey,X it's your turn</p>
           <div>
-            BOARD
+            {
+                Array(9).fill(null).map((val,ind) => (
+                    <p>Square</p>
+                ))
+            }
           </div>
         </div>
     )
